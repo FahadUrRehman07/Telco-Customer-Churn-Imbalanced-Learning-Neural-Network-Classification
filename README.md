@@ -4,16 +4,16 @@ A reproducible machine-learning project for predicting customer churn while stud
 
 ## Project Status
 
-**Day 3 of 10 — Baseline ANN and evaluation**
+**Day 4 of 10 — Class-imbalance analysis**
 
-The project now has a leakage-safe preprocessing pipeline and a reproducible neural-network baseline. Subsequent experiments will change one imbalance strategy at a time so their effect can be compared fairly.
+The project now includes a target-distribution diagnostic before any resampling strategy is introduced. This makes the later under-sampling, over-sampling, and SMOTE comparisons easier to interpret.
 
 ## Workflow
 
 1. Project structure and cleanup — complete
 2. Leakage-safe preprocessing pipeline — complete
 3. Baseline ANN + evaluation — complete
-4. Class-imbalance analysis
+4. Class-imbalance analysis — complete
 5. Random under-sampling comparison
 6. Over-sampling comparison
 7. SMOTE comparison
@@ -33,9 +33,21 @@ The project now has a leakage-safe preprocessing pipeline and a reproducible neu
 
 The test set remains untouched until final evaluation.
 
+## Imbalance analysis
+
+src/imbalance.py reports:
+
+- Total rows
+- Positive and negative churn counts
+- Positive and negative class rates
+- Minority-to-majority ratio
+- Majority-class accuracy baseline
+
+The diagnostic is intentionally model-free. It quantifies the problem before changing the training distribution.
+
 ## Usage
 
-Import `load_telco_csv` and `train_baseline` from `src.baseline`, then pass the loaded Telco dataframe to `train_baseline`. Keep the raw dataset outside Git unless its redistribution terms permit committing it.
+Import load_telco_csv, train_baseline, and analyze_target_distribution from src. Keep the raw dataset outside Git unless its redistribution terms permit committing it.
 
 ## Repository structure
 
@@ -44,4 +56,5 @@ requirements.txt
 src/
   __init__.py
   baseline.py
+  imbalance.py
   preprocessing.py
