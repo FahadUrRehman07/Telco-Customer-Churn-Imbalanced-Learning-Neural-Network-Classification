@@ -4,9 +4,9 @@ A reproducible machine-learning project for predicting customer churn while stud
 
 ## Project Status
 
-**Day 4 of 10 — Class-imbalance analysis**
+**Day 5 of 10 — Random under-sampling comparison**
 
-The project now includes a target-distribution diagnostic before any resampling strategy is introduced. This makes the later under-sampling, over-sampling, and SMOTE comparisons easier to interpret.
+The project now includes a leakage-safe random under-sampling experiment. Only the training split is rebalanced; the stratified test split remains untouched for a fair comparison with the original ANN baseline.
 
 ## Workflow
 
@@ -14,7 +14,7 @@ The project now includes a target-distribution diagnostic before any resampling 
 2. Leakage-safe preprocessing pipeline — complete
 3. Baseline ANN + evaluation — complete
 4. Class-imbalance analysis — complete
-5. Random under-sampling comparison
+5. Random under-sampling comparison — complete
 6. Over-sampling comparison
 7. SMOTE comparison
 8. Threshold and metric analysis
@@ -35,7 +35,7 @@ The test set remains untouched until final evaluation.
 
 ## Imbalance analysis
 
-src/imbalance.py reports:
+`src/imbalance.py` reports:
 
 - Total rows
 - Positive and negative churn counts
@@ -43,11 +43,21 @@ src/imbalance.py reports:
 - Minority-to-majority ratio
 - Majority-class accuracy baseline
 
-The diagnostic is intentionally model-free. It quantifies the problem before changing the training distribution.
+## Random under-sampling
+
+`src/sampling.py` adds:
+
+- Majority-class down-sampling to the minority-class size
+- Shuffling after resampling
+- Reuse of the same leakage-safe ANN pipeline
+- Evaluation on the original untouched test split
+- Sample-count reporting so the training-distribution change is explicit
+
+The helper raises an error for non-binary targets instead of silently applying an invalid strategy.
 
 ## Usage
 
-Import load_telco_csv, train_baseline, and analyze_target_distribution from src. Keep the raw dataset outside Git unless its redistribution terms permit committing it.
+Import `load_telco_csv`, `train_baseline`, `analyze_target_distribution`, and `train_undersampled` from `src`. Keep the raw dataset outside Git unless its redistribution terms permit committing it.
 
 ## Repository structure
 
@@ -58,3 +68,4 @@ src/
   baseline.py
   imbalance.py
   preprocessing.py
+  sampling.py
