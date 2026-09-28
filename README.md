@@ -4,9 +4,9 @@ A reproducible machine-learning project for predicting customer churn while stud
 
 ## Project Status
 
-**Day 6 of 10 — Random over-sampling comparison**
+**Day 7 of 10 — SMOTE comparison**
 
-The project now includes a leakage-safe random over-sampling experiment. Only the training split is rebalanced; the stratified test split remains untouched for a fair comparison with the original ANN baseline and the under-sampling experiment.
+The project now includes a leakage-safe SMOTE experiment. Synthetic samples are generated only after fitting preprocessing on the training split; the stratified test split remains untouched for a fair comparison with earlier experiments.
 
 ## Workflow
 
@@ -16,20 +16,21 @@ The project now includes a leakage-safe random over-sampling experiment. Only th
 4. Class-imbalance analysis — complete
 5. Random under-sampling comparison — complete
 6. Random over-sampling comparison — complete
-7. SMOTE comparison
+7. SMOTE comparison — complete
 8. Threshold and metric analysis
 9. Reproducibility and code cleanup
 10. Final documentation and completion checks
 
 ## Sampling comparisons
 
-- `src/sampling.py`: random under-sampling of the majority class.
-- `src/oversampling.py`: random over-sampling of the minority class.
-- Both keep the test split untouched and report sample counts plus accuracy, precision, recall, F1-score, and ROC-AUC.
+- `src/sampling.py`: random under-sampling.
+- `src/oversampling.py`: random over-sampling.
+- `src/smote.py`: synthetic minority over-sampling after leakage-safe encoding.
+- All experiments keep the test split untouched and report sample counts plus accuracy, precision, recall, F1-score, and ROC-AUC.
 
 ## Usage
 
-Import `train_baseline`, `train_undersampled`, and `train_oversampled` from `src`. Keep the raw dataset outside Git unless its redistribution terms permit committing it.
+Import `train_baseline`, `train_undersampled`, `train_oversampled`, and `train_smote` from `src`. Keep the raw dataset outside Git unless its redistribution terms permit committing it.
 
 ## Repository structure
 
@@ -42,3 +43,4 @@ src/
   preprocessing.py
   sampling.py
   oversampling.py
+  smote.py
