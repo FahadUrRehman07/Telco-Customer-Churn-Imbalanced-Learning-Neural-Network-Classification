@@ -1,36 +1,38 @@
 # Telco Customer Churn — Imbalanced Learning & Neural Network Classification
 
-A reproducible machine-learning project for predicting customer churn while studying how class imbalance and decision thresholds affect minority-class detection.
+A reproducible project for studying class imbalance, ANN classification, and churn decision thresholds.
 
 ## Project Status
 
-**Day 7 of 10 — SMOTE comparison**
+**Day 8 of 10 — decision-threshold analysis**
 
-The project now includes a leakage-safe SMOTE experiment. Synthetic samples are generated only after fitting preprocessing on the training split; the stratified test split remains untouched for a fair comparison with earlier experiments.
+The project now compares multiple probability cutoffs on one trained ANN using an untouched stratified test split.
 
 ## Workflow
 
 1. Project structure and cleanup — complete
-2. Leakage-safe preprocessing pipeline — complete
+2. Leakage-safe preprocessing — complete
 3. Baseline ANN + evaluation — complete
 4. Class-imbalance analysis — complete
-5. Random under-sampling comparison — complete
-6. Random over-sampling comparison — complete
+5. Random under-sampling — complete
+6. Random over-sampling — complete
 7. SMOTE comparison — complete
-8. Threshold and metric analysis
+8. Threshold and metric analysis — complete
 9. Reproducibility and code cleanup
 10. Final documentation and completion checks
 
-## Sampling comparisons
+## Experiments
 
-- `src/sampling.py`: random under-sampling.
-- `src/oversampling.py`: random over-sampling.
-- `src/smote.py`: synthetic minority over-sampling after leakage-safe encoding.
-- All experiments keep the test split untouched and report sample counts plus accuracy, precision, recall, F1-score, and ROC-AUC.
+- `src/sampling.py`: random under-sampling
+- `src/oversampling.py`: random over-sampling
+- `src/smote.py`: leakage-safe SMOTE
+- `src/thresholds.py`: compare churn-probability thresholds with accuracy, precision, recall, F1, ROC-AUC, and confusion-matrix counts
+
+All experiments keep the test split untouched.
 
 ## Usage
 
-Import `train_baseline`, `train_undersampled`, `train_oversampled`, and `train_smote` from `src`. Keep the raw dataset outside Git unless its redistribution terms permit committing it.
+Import `train_baseline`, `train_undersampled`, `train_oversampled`, `train_smote`, and `evaluate_thresholds` from `src`.
 
 ## Repository structure
 
@@ -44,3 +46,4 @@ src/
   sampling.py
   oversampling.py
   smote.py
+  thresholds.py
